@@ -1,0 +1,78 @@
+# =============================================================================
+#  R E P S   ·   noml-core
+# =============================================================================
+[package]
+name    = "noml-core"
+version = "0.1.0"
+
+# Minimum Supported Rust Version (MSRV)
+rust-version = "1.85"
+edition = "2024"
+
+# License
+license = "Apache-2.0 OR MIT"
+
+# Readme
+readme = "README.md"
+
+# Description
+description = "Zero-dependency, no_std, format-preserving NOML document model: read, edit, and write configuration while keeping comments and layout."
+
+# Keywords (5 max)
+keywords = ["noml", "toml", "config", "format-preserving", "no-std"]
+
+# Categories
+categories = ["config", "parser-implementations", "no-std"]
+
+# Links
+homepage      = "https://github.com/jamesgober/noml-core"
+repository    = "https://github.com/jamesgober/noml-core"
+documentation = "https://docs.rs/noml-core"
+
+# Authors
+authors = ["James Gober <me@jamesgober.com>"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[lib]
+name = "noml_core"
+path = "src/lib.rs"
+
+
+# FEATURE FLAGS
+# #################################
+[features]
+default = ["std"]
+std = []
+
+
+# DEPENDENCIES
+# #################################
+[dependencies]
+# First-party -lang dependencies are wired at v0.2.0, when first used.
+
+
+# DEV DEPENDENCIES
+# #################################
+[dev-dependencies]
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest  = "1"
+
+
+# BENCHMARKS
+# #################################
+[[bench]]
+name    = "bench"
+harness = false
+
+
+# RELEASE PROFILE
+# #################################
+[profile.release]
+opt-level     = 3
+lto           = "fat"
+codegen-units = 1
+panic         = "abort"
+strip         = "symbols"
